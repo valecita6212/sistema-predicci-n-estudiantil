@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" id="html-root">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,10 +21,15 @@
             }
         }
     </script>
+    <style>
+        .text-size-sm { font-size: 87.5%; }
+        .text-size-md { font-size: 100%; }
+        .text-size-lg { font-size: 112.5%; }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between transition-all duration-200 text-size-md">
 
-    <!-- PANTALLA DE LOGIN (Basado en tu diseño de boceto) -->
+    <!-- PANTALLA DE LOGIN -->
     <div id="login-screen" class="fixed inset-0 bg-slate-900/95 backdrop-blur-md z-[100] flex items-center justify-center p-4">
         <div class="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-md border border-slate-100 text-center">
             <div class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center text-white mx-auto mb-4 shadow-lg shadow-blue-500/30">
@@ -46,7 +51,10 @@
                     <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Contraseña</label>
                     <div class="relative">
                         <i data-lucide="lock" class="w-5 h-5 text-slate-400 absolute left-3 top-3"></i>
-                        <input type="password" id="login-pass" placeholder="••••••••" class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-600 transition-colors">
+                        <input type="password" id="login-pass" placeholder="••••••••" class="w-full pl-10 pr-10 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-600 transition-colors">
+                        <button type="button" onclick="togglePassword()" class="absolute right-3 top-3 text-slate-400 hover:text-slate-600">
+                            <i data-lucide="eye" id="eye-icon" class="w-5 h-5"></i>
+                        </button>
                     </div>
                 </div>
 
@@ -77,6 +85,13 @@
             </div>
             
             <div class="flex items-center space-x-4">
+                <!-- Controles de Tamaño de Fuente -->
+                <div class="hidden sm:flex items-center space-x-1 bg-slate-100 p-1 rounded-xl border border-slate-200">
+                    <button onclick="setFontSize('sm')" class="px-2.5 py-1 text-xs font-bold text-slate-600 hover:bg-white rounded-lg transition-colors cursor-pointer" title="Reducir fuente">A-</button>
+                    <button onclick="setFontSize('md')" class="px-2.5 py-1 text-xs font-bold text-slate-600 hover:bg-white rounded-lg transition-colors cursor-pointer" title="Fuente normal">A</button>
+                    <button onclick="setFontSize('lg')" class="px-2.5 py-1 text-xs font-bold text-slate-600 hover:bg-white rounded-lg transition-colors cursor-pointer" title="Aumentar fuente">A+</button>
+                </div>
+
                 <button onclick="handleLogout()" class="text-xs font-bold text-rose-600 bg-rose-50 hover:bg-rose-100 px-3.5 py-2 rounded-xl transition-colors flex items-center space-x-1.5 border border-rose-100 cursor-pointer">
                     <i data-lucide="log-out" class="w-4 h-4"></i>
                     <span>Cerrar Sesión</span>
@@ -85,7 +100,7 @@
         </div>
     </header>
 
-    <!-- PANEL PRINCIPAL (Basado en tu Panel de Estudiantes) -->
+    <!-- PANEL PRINCIPAL -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
         
         <!-- Tarjetas Resumen Superior -->
@@ -93,7 +108,7 @@
             <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
                 <div>
                     <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Estudiantes Analizados</p>
-                    <h3 id="stat-total" class="text-3xl font-bold text-slate-900 mt-1">3</h3>
+                    <h3 id="stat-total" class="text-3xl font-bold text-slate-900 mt-1">0</h3>
                 </div>
                 <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center">
                     <i data-lucide="users" class="w-6 h-6"></i>
@@ -102,7 +117,7 @@
             <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
                 <div>
                     <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Riesgo Bajo / Bueno</p>
-                    <h3 id="stat-low" class="text-3xl font-bold text-emerald-600 mt-1">2</h3>
+                    <h3 id="stat-low" class="text-3xl font-bold text-emerald-600 mt-1">0</h3>
                 </div>
                 <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center">
                     <i data-lucide="shield-check" class="w-6 h-6"></i>
@@ -111,7 +126,7 @@
             <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
                 <div>
                     <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">En Riesgo Alto</p>
-                    <h3 id="stat-high" class="text-3xl font-bold text-rose-600 mt-1">1</h3>
+                    <h3 id="stat-high" class="text-3xl font-bold text-rose-600 mt-1">0</h3>
                 </div>
                 <div class="w-12 h-12 bg-rose-50 text-rose-600 rounded-xl flex items-center justify-center">
                     <i data-lucide="alert-triangle" class="w-6 h-6"></i>
@@ -121,7 +136,7 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
             
-            <!-- COLUMNA IZQUIERDA: TABLA Y BUSCADOR DE ESTUDIANTES -->
+            <!-- COLUMNA IZQUIERDA: TABLA Y BUSCADOR -->
             <div class="lg:col-span-6 space-y-6">
                 <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
@@ -141,7 +156,7 @@
                         <input type="text" id="search-input" oninput="filterStudents()" placeholder="Buscar estudiante por nombre..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-600 transition-colors">
                     </div>
 
-                    <!-- Tabla de Estudiantes (Como tu boceto) -->
+                    <!-- Tabla de Estudiantes -->
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse">
                             <thead>
@@ -160,7 +175,7 @@
                 </div>
             </div>
 
-            <!-- COLUMNA DERECHA: RESULTADOS, FACTORES Y PLAN DE MEJORA -->
+            <!-- COLUMNA DERECHA: RESULTADOS Y PLANES -->
             <div class="lg:col-span-6 space-y-6">
                 <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between min-h-[520px]">
                     <div>
@@ -176,7 +191,7 @@
                             </div>
                         </div>
 
-                        <!-- Métricas de Estilo de Vida y Estudio (Reloj, Sueño, etc.) -->
+                        <!-- Métricas -->
                         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-6">
                             <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-100 text-center">
                                 <i data-lucide="clock" class="w-5 h-5 text-amber-500 mx-auto mb-1"></i>
@@ -200,7 +215,7 @@
                             </div>
                         </div>
 
-                        <!-- Factores Principales (Como tu boceto de Vicente Fernández) -->
+                        <!-- Factores -->
                         <div class="space-y-4">
                             <div>
                                 <h3 class="text-sm font-bold text-slate-900 mb-2 flex items-center space-x-2">
@@ -238,7 +253,7 @@
         </div>
     </main>
 
-    <!-- MODAL PARA NUEVO REGISTRO (Basado en tu boceto "Nuevo Registro") -->
+    <!-- MODAL PARA NUEVO REGISTRO -->
     <div id="add-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white p-6 rounded-2xl max-w-md w-full shadow-2xl space-y-4 border border-slate-100">
             <div class="flex justify-between items-center border-b pb-3">
@@ -255,16 +270,20 @@
                     <input type="text" id="new-name" placeholder="Ej. Carlos Pérez" class="w-full p-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-600">
                 </div>
                 <div>
+                    <label class="block text-xs font-bold text-slate-700">Usuario institucional (se añadirá @uniminuto.edu.co)</label>
+                    <input type="text" id="new-username" placeholder="carlos.perez" class="w-full p-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-600">
+                </div>
+                <div>
                     <label class="block text-xs font-bold text-slate-700">Horas de Estudio Semanales</label>
                     <input type="number" id="new-study" placeholder="Ej. 10" class="w-full p-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-600">
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs font-bold text-slate-700">Calificaciones Previas (1-5)</label>
+                        <label class="block text-xs font-bold text-slate-700">Calificaciones (1-5)</label>
                         <input type="number" step="0.1" id="new-gpa" placeholder="3.8" class="w-full p-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-600">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-700">Porcentaje de Asistencia %</label>
+                        <label class="block text-xs font-bold text-slate-700">Asistencia %</label>
                         <input type="number" id="new-attendance" placeholder="85" class="w-full p-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-600">
                     </div>
                 </div>
@@ -276,7 +295,7 @@
         </div>
     </div>
 
-    <!-- NOTIFICACIÓN DE ÉXITO (TOAST) -->
+    <!-- NOTIFICACIÓN DE ÉXITO -->
     <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 text-white px-6 py-4 rounded-2xl shadow-2xl transform translate-y-32 opacity-0 transition-all duration-300 flex items-center space-x-3 z-50 border border-slate-700">
         <div class="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold text-xs">✓</div>
         <div>
@@ -289,7 +308,8 @@
     <script>
         const DOMAIN = "@uniminuto.edu.co";
 
-        let students = [
+        // Datos iniciales por defecto si es la primera vez
+        const defaultStudents = [
             {
                 id: 1,
                 name: "Pepito Perez",
@@ -300,14 +320,8 @@
                 prediction: "Bueno",
                 predictionClass: "bg-emerald-50 text-emerald-700 border border-emerald-200",
                 riskLevel: "Bajo",
-                factors: [
-                    "Excelente asistencia (92%)",
-                    "Horas de estudio semanales óptimas (14h)"
-                ],
-                plan: [
-                    "Mantener metodologías de estudio actuales",
-                    "Participación en semilleros de IA y datos"
-                ]
+                factors: ["Excelente asistencia (92%)", "Horas de estudio semanales óptimas (14h)"],
+                plan: ["Mantener metodologías de estudio actuales", "Participación en semilleros de IA y datos"]
             },
             {
                 id: 2,
@@ -319,15 +333,8 @@
                 prediction: "En Riesgo",
                 predictionClass: "bg-rose-50 text-rose-700 border border-rose-200",
                 riskLevel: "Alto",
-                factors: [
-                    "Baja Asistencia (64%)",
-                    "Pocas horas de estudio (5h semanales)"
-                ],
-                plan: [
-                    "Aumentar horas de estudio (Meta sugerida: 13h semanales)",
-                    "Mejorar Asistencia (Meta sugerida: superar 85%)",
-                    "Asignar tutoría de refuerzo y seguimiento quincenal"
-                ]
+                factors: ["Baja Asistencia (64%)", "Pocas horas de estudio (5h semanales)"],
+                plan: ["Aumentar horas de estudio (Meta sugerida: 13h semanales)", "Mejorar Asistencia (Meta sugerida: superar 85%)", "Asignar tutoría de refuerzo y seguimiento quincenal"]
             },
             {
                 id: 3,
@@ -339,18 +346,35 @@
                 prediction: "Medio",
                 predictionClass: "bg-amber-50 text-amber-700 border border-amber-200",
                 riskLevel: "Moderado",
-                factors: [
-                    "Asistencia aceptable (88%)",
-                    "Horas de estudio en promedio estándar"
-                ],
-                plan: [
-                    "Incrementar ligeramente el tiempo de repaso autónomo",
-                    "Revisión de entregas prácticas con tutor asignado"
-                ]
+                factors: ["Asistencia aceptable (88%)", "Horas de estudio en promedio estándar"],
+                plan: ["Incrementar ligeramente el tiempo de repaso autónomo", "Revisión de entregas prácticas con tutor asignado"]
             }
         ];
 
+        // Cargar desde localStorage o usar los valores por defecto
+        let students = JSON.parse(localStorage.getItem('sipa_students')) || defaultStudents;
         let selectedStudent = null;
+
+        // VER / OCULTAR CONTRASEÑA
+        function togglePassword() {
+            const passInput = document.getElementById('login-pass');
+            const eyeIcon = document.getElementById('eye-icon');
+            if (passInput.type === 'password') {
+                passInput.type = 'text';
+                eyeIcon.setAttribute('data-lucide', 'eye-off');
+            } else {
+                passInput.type = 'password';
+                eyeIcon.setAttribute('data-lucide', 'eye');
+            }
+            lucide.createIcons();
+        }
+
+        // CAMBIAR TAMAÑO DE FUENTE
+        function setFontSize(size) {
+            const root = document.getElementById('html-root');
+            root.classList.remove('text-size-sm', 'text-size-md', 'text-size-lg');
+            root.classList.add(`text-size-${size}`);
+        }
 
         // LOGIN / LOGOUT
         function handleLogin() {
@@ -373,7 +397,12 @@
             document.getElementById('login-error').classList.add('hidden');
         }
 
-        // RENDERIZAR TABLA DE ESTUDIANTES
+        // GUARDAR EN LOCALSTORAGE
+        function saveToStorage() {
+            localStorage.setItem('sipa_students', JSON.stringify(students));
+        }
+
+        // RENDERIZAR TABLA
         function renderStudentTable(filterText = "") {
             const tbody = document.getElementById('student-table-body');
             const filtered = students.filter(s => s.name.toLowerCase().includes(filterText.toLowerCase()));
@@ -407,7 +436,7 @@
             renderStudentTable(query);
         }
 
-        // SELECCIONAR ESTUDIANTE Y MOSTRAR DETALLE
+        // SELECCIONAR ESTUDIANTE
         function selectStudent(id) {
             selectedStudent = students.find(s => s.id === id);
             if (!selectedStudent) return;
@@ -424,11 +453,9 @@
             document.getElementById('metric-gpa').textContent = selectedStudent.gpa;
             document.getElementById('metric-attendance').textContent = `${selectedStudent.attendance}%`;
 
-            // Factores
             const factorsList = document.getElementById('risk-factors');
             factorsList.innerHTML = selectedStudent.factors.map(f => `<li class="font-medium text-slate-700">${f}</li>`).join('');
 
-            // Plan de Mejora
             const planContainer = document.getElementById('improvement-plan');
             planContainer.innerHTML = selectedStudent.plan.map(p => `
                 <div class="flex items-start space-x-2 text-sm text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100">
@@ -437,7 +464,6 @@
                 </div>
             `).join('');
 
-            // Habilitar botón de envío
             const btnSend = document.getElementById('btn-send');
             btnSend.disabled = false;
             btnSend.className = "w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3.5 px-6 rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 cursor-pointer shadow-md shadow-blue-500/20";
@@ -451,11 +477,12 @@
 
         function handleAddStudent() {
             const name = document.getElementById('new-name').value.trim();
+            const username = document.getElementById('new-username').value.trim();
             const study = parseFloat(document.getElementById('new-study').value);
             const gpaVal = parseFloat(document.getElementById('new-gpa').value);
             const attendance = parseInt(document.getElementById('new-attendance').value);
 
-            if (!name || isNaN(study) || isNaN(gpaVal) || isNaN(attendance)) {
+            if (!name || !username || isNaN(study) || isNaN(gpaVal) || isNaN(attendance)) {
                 alert("Por favor completa todos los campos del nuevo registro.");
                 return;
             }
@@ -484,11 +511,11 @@
                 plan = ["Reforzar conceptos clave", "Monitoreo quincenal del docente"];
             }
 
-            const cleanEmail = name.toLowerCase().replace(/\s+/g, '.') + DOMAIN;
+            const cleanUser = username.replace('@uniminuto.edu.co', '').trim();
             const newStudent = {
                 id: Date.now(),
                 name: name,
-                email: cleanEmail,
+                email: cleanUser + DOMAIN,
                 attendance: attendance,
                 studyHours: study,
                 gpa: `${gpaVal.toFixed(1)} / 5.0`,
@@ -500,12 +527,14 @@
             };
 
             students.push(newStudent);
+            saveToStorage(); // Guarda permanentemente
             renderStudentTable();
             selectStudent(newStudent.id);
             closeModal();
 
             // Limpiar formulario
             document.getElementById('new-name').value = '';
+            document.getElementById('new-username').value = '';
             document.getElementById('new-study').value = '';
             document.getElementById('new-gpa').value = '';
             document.getElementById('new-attendance').value = '';
