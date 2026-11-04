@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIPA-IA | Uniminuto</title>
+    <title>SIPA-IA | Sistema de Predicción de Rendimiento Académico</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Plus Jakarta Sans -->
@@ -24,18 +24,18 @@
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
 
-    <!-- PANTALLA DE LOGIN -->
+    <!-- PANTALLA DE LOGIN (Basado en tu diseño de boceto) -->
     <div id="login-screen" class="fixed inset-0 bg-slate-900/95 backdrop-blur-md z-[100] flex items-center justify-center p-4">
         <div class="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-md border border-slate-100 text-center">
             <div class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center text-white mx-auto mb-4 shadow-lg shadow-blue-500/30">
                 <i data-lucide="brain-circuit" class="w-8 h-8"></i>
             </div>
-            <h2 class="text-2xl font-bold text-slate-900">SIPA-IA Uniminuto</h2>
-            <p class="text-xs text-slate-500 mt-1 mb-6">Plataforma Docente de Predicción Educativa</p>
+            <h2 class="text-2xl font-bold text-slate-900">Predicción de Rendimiento Académico</h2>
+            <p class="text-xs text-slate-500 mt-1 mb-6">Sistema Inteligente • @uniminuto.edu.co</p>
 
             <div class="space-y-4 text-left">
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Correo Institucional</label>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Usuario / Correo institucional</label>
                     <div class="relative">
                         <i data-lucide="mail" class="w-5 h-5 text-slate-400 absolute left-3 top-3"></i>
                         <input type="email" id="login-email" placeholder="docente@uniminuto.edu.co" class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-600 transition-colors">
@@ -56,7 +56,7 @@
                 </div>
 
                 <button type="button" onclick="handleLogin()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition-all duration-200 shadow-md shadow-blue-500/20 flex items-center justify-center space-x-2 cursor-pointer">
-                    <span>Ingresar al Sistema</span>
+                    <span>Ingresar</span>
                     <i data-lucide="arrow-right" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -71,16 +71,12 @@
                     <i data-lucide="graduation-cap" class="w-6 h-6"></i>
                 </div>
                 <div>
-                    <h1 class="text-xl font-bold text-slate-900 tracking-tight">SIPA-IA</h1>
-                    <p class="text-xs text-slate-500 font-medium">Sistema Inteligente • @uniminuto.edu.co</p>
+                    <h1 class="text-xl font-bold text-slate-900 tracking-tight">Predicción de Rendimiento Académico</h1>
+                    <p class="text-xs text-slate-500 font-medium">Intro a la Ciencia de Datos e IA • Autores: Dylan Ruiz, Sara Cardona</p>
                 </div>
             </div>
             
             <div class="flex items-center space-x-4">
-                <div class="hidden md:flex items-center space-x-2 text-xs bg-blue-50 text-blue-700 px-3 py-1.5 rounded-full font-semibold border border-blue-100">
-                    <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
-                    <span>Sesión Docente Activa</span>
-                </div>
                 <button onclick="handleLogout()" class="text-xs font-bold text-rose-600 bg-rose-50 hover:bg-rose-100 px-3.5 py-2 rounded-xl transition-colors flex items-center space-x-1.5 border border-rose-100 cursor-pointer">
                     <i data-lucide="log-out" class="w-4 h-4"></i>
                     <span>Cerrar Sesión</span>
@@ -89,53 +85,98 @@
         </div>
     </header>
 
-    <!-- PANEL PRINCIPAL -->
+    <!-- PANEL PRINCIPAL (Basado en tu Panel de Estudiantes) -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+        
+        <!-- Tarjetas Resumen Superior -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Estudiantes Analizados</p>
+                    <h3 id="stat-total" class="text-3xl font-bold text-slate-900 mt-1">3</h3>
+                </div>
+                <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center">
+                    <i data-lucide="users" class="w-6 h-6"></i>
+                </div>
+            </div>
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Riesgo Bajo / Bueno</p>
+                    <h3 id="stat-low" class="text-3xl font-bold text-emerald-600 mt-1">2</h3>
+                </div>
+                <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center">
+                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+                </div>
+            </div>
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">En Riesgo Alto</p>
+                    <h3 id="stat-high" class="text-3xl font-bold text-rose-600 mt-1">1</h3>
+                </div>
+                <div class="w-12 h-12 bg-rose-50 text-rose-600 rounded-xl flex items-center justify-center">
+                    <i data-lucide="alert-triangle" class="w-6 h-6"></i>
+                </div>
+            </div>
+        </div>
+
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
             
-            <!-- COLUMNA IZQUIERDA: LISTA Y BUSCADOR -->
-            <div class="lg:col-span-5 space-y-6">
+            <!-- COLUMNA IZQUIERDA: TABLA Y BUSCADOR DE ESTUDIANTES -->
+            <div class="lg:col-span-6 space-y-6">
                 <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                    <div class="flex items-center justify-between mb-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
                         <h2 class="text-lg font-bold text-slate-900 flex items-center space-x-2">
-                            <i data-lucide="users" class="w-5 h-5 text-blue-600"></i>
-                            <span>Estudiantes</span>
+                            <i data-lucide="layout-dashboard" class="w-5 h-5 text-blue-600"></i>
+                            <span>Panel de Estudiantes</span>
                         </h2>
-                        <button onclick="openModal()" class="text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg transition-colors flex items-center space-x-1 cursor-pointer">
-                            <i data-lucide="user-plus" class="w-3.5 h-3.5"></i>
-                            <span>+ Agregar</span>
+                        <button onclick="openModal()" class="text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white px-3.5 py-2 rounded-xl transition-colors flex items-center space-x-1.5 cursor-pointer shadow-sm">
+                            <i data-lucide="user-plus" class="w-4 h-4"></i>
+                            <span>+ Nuevo Registro</span>
                         </button>
                     </div>
 
                     <!-- Buscador -->
                     <div class="relative mb-4">
-                        <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-3"></i>
-                        <input type="text" id="search-input" oninput="filterStudents()" placeholder="Buscar estudiante por nombre..." class="w-full pl-9 pr-4 py-2 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-600 transition-colors">
+                        <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3"></i>
+                        <input type="text" id="search-input" oninput="filterStudents()" placeholder="Buscar estudiante por nombre..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-600 transition-colors">
                     </div>
 
-                    <div id="student-list" class="space-y-3 max-h-[420px] overflow-y-auto pr-1">
-                        <!-- Perfiles dinámicos -->
+                    <!-- Tabla de Estudiantes (Como tu boceto) -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-100 text-xs font-bold text-slate-400 uppercase tracking-wider">
+                                    <th class="py-3 px-3">Estudiante</th>
+                                    <th class="py-3 px-3">Asistencia</th>
+                                    <th class="py-3 px-3">Predicción</th>
+                                    <th class="py-3 px-3 text-right">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="student-table-body" class="divide-y divide-slate-100 text-sm">
+                                <!-- Inyectado dinámicamente -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
 
-            <!-- COLUMNA DERECHA: DIAGNÓSTICO Y MÉTRICAS -->
-            <div class="lg:col-span-7 space-y-6">
-                <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between min-h-[500px]">
+            <!-- COLUMNA DERECHA: RESULTADOS, FACTORES Y PLAN DE MEJORA -->
+            <div class="lg:col-span-6 space-y-6">
+                <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between min-h-[520px]">
                     <div>
-                        <!-- Encabezado del Perfil Seleccionado -->
+                        <!-- Encabezado del Resultado -->
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-100 gap-4">
                             <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full">Perfil Seleccionado</span>
-                                <h2 id="student-name" class="text-2xl font-bold text-slate-900 mt-2">Selecciona un estudiante</h2>
-                                <p id="student-email" class="text-sm text-slate-500">Correo: -</p>
+                                <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full">Resultado de Análisis IA</span>
+                                <h2 id="result-name" class="text-2xl font-bold text-slate-900 mt-2">Selecciona un estudiante</h2>
+                                <p id="result-email" class="text-xs text-slate-400">-</p>
                             </div>
-                            <div id="risk-badge" class="px-4 py-2 rounded-xl text-sm font-bold text-center bg-slate-100 text-slate-600">
-                                Estado: Pendiente
+                            <div id="result-badge" class="px-4 py-2 rounded-xl text-sm font-bold text-center bg-slate-100 text-slate-600">
+                                Nivel de Riesgo: -
                             </div>
                         </div>
 
-                        <!-- Tarjetas de Métricas de Estilo de Vida (Iconos) -->
+                        <!-- Métricas de Estilo de Vida y Estudio (Reloj, Sueño, etc.) -->
                         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-6">
                             <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-100 text-center">
                                 <i data-lucide="clock" class="w-5 h-5 text-amber-500 mx-auto mb-1"></i>
@@ -143,51 +184,52 @@
                                 <span id="metric-absences" class="text-base font-bold text-slate-900">-</span>
                             </div>
                             <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-100 text-center">
-                                <i data-lucide="moon" class="w-5 h-5 text-indigo-500 mx-auto mb-1"></i>
-                                <span class="block text-xs text-slate-500">Horas Sueño</span>
-                                <span id="metric-sleep" class="text-base font-bold text-slate-900">-</span>
+                                <i data-lucide="book-open" class="w-5 h-5 text-indigo-500 mx-auto mb-1"></i>
+                                <span class="block text-xs text-slate-500">Horas Estudio</span>
+                                <span id="metric-study" class="text-base font-bold text-slate-900">-</span>
                             </div>
                             <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-100 text-center">
                                 <i data-lucide="award" class="w-5 h-5 text-blue-500 mx-auto mb-1"></i>
-                                <span class="block text-xs text-slate-500">Promedio</span>
+                                <span class="block text-xs text-slate-500">Calificación</span>
                                 <span id="metric-gpa" class="text-base font-bold text-slate-900">-</span>
                             </div>
                             <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-100 text-center">
                                 <i data-lucide="activity" class="w-5 h-5 text-emerald-500 mx-auto mb-1"></i>
-                                <span class="block text-xs text-slate-500">Asistencia %</span>
+                                <span class="block text-xs text-slate-500">Asistencia</span>
                                 <span id="metric-attendance" class="text-base font-bold text-slate-900">-</span>
                             </div>
                         </div>
 
-                        <!-- Recomendaciones de IA -->
+                        <!-- Factores Principales (Como tu boceto de Vicente Fernández) -->
                         <div class="space-y-4">
                             <div>
                                 <h3 class="text-sm font-bold text-slate-900 mb-2 flex items-center space-x-2">
-                                    <i data-lucide="sparkles" class="w-4 h-4 text-blue-600"></i>
-                                    <span>Diagnóstico de la IA</span>
+                                    <i data-lucide="alert-circle" class="w-4 h-4 text-rose-500"></i>
+                                    <span>Factores Principales detectados por el modelo</span>
                                 </h3>
-                                <p id="ai-diagnosis" class="text-slate-600 text-sm leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-100">
-                                    Selecciona un estudiante de la lista de la izquierda para ver el diagnóstico detallado.
-                                </p>
+                                <ul id="risk-factors" class="space-y-1.5 text-sm text-slate-600 bg-slate-50 p-4 rounded-xl border border-slate-100 list-disc list-inside">
+                                    <li class="text-slate-400 italic">Selecciona un estudiante para ver los factores.</li>
+                                </ul>
                             </div>
 
+                            <!-- Plan de Mejora -->
                             <div>
                                 <h3 class="text-sm font-bold text-slate-900 mb-2 flex items-center space-x-2">
-                                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
-                                    <span>Plan de Recomendaciones Específicas</span>
+                                    <i data-lucide="sparkles" class="w-4 h-4 text-blue-600"></i>
+                                    <span>Plan de Mejora Sugerido</span>
                                 </h3>
-                                <div id="ai-recommendations" class="space-y-2">
-                                    <div class="text-sm text-slate-400 italic">No hay recomendaciones cargadas.</div>
+                                <div id="improvement-plan" class="space-y-2">
+                                    <div class="text-sm text-slate-400 italic">No hay metas asignadas.</div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Botón de Envío -->
+                    <!-- Botón de Envío de Correo Institucional -->
                     <div class="mt-8 pt-6 border-t border-slate-100">
                         <button onclick="sendReport()" id="btn-send" disabled class="w-full bg-slate-200 text-slate-400 font-semibold py-3.5 px-6 rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 cursor-not-allowed shadow-sm">
                             <i data-lucide="send" class="w-5 h-5"></i>
-                            <span>Enviar Reporte al Estudiante y Tutor</span>
+                            <span>Notificar al Estudiante y Tutor (@uniminuto.edu.co)</span>
                         </button>
                     </div>
                 </div>
@@ -196,49 +238,39 @@
         </div>
     </main>
 
-    <!-- MODAL PARA AGREGAR ESTUDIANTE -->
+    <!-- MODAL PARA NUEVO REGISTRO (Basado en tu boceto "Nuevo Registro") -->
     <div id="add-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white p-6 rounded-2xl max-w-md w-full shadow-2xl space-y-4 border border-slate-100">
             <div class="flex justify-between items-center border-b pb-3">
                 <h3 class="font-bold text-slate-900 flex items-center space-x-2">
                     <i data-lucide="user-plus" class="w-5 h-5 text-blue-600"></i>
-                    <span>Agregar Nuevo Estudiante</span>
+                    <span>Nuevo Registro</span>
                 </h3>
                 <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 cursor-pointer"><i data-lucide="x" class="w-5 h-5"></i></button>
             </div>
             
             <div class="space-y-3">
                 <div>
-                    <label class="block text-xs font-bold text-slate-700">Nombre Completo</label>
-                    <input type="text" id="new-name" placeholder="Ej. Andrés Ramírez" class="w-full p-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-600">
+                    <label class="block text-xs font-bold text-slate-700">Nombre del Estudiante</label>
+                    <input type="text" id="new-name" placeholder="Ej. Carlos Pérez" class="w-full p-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-600">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-700">Usuario (creará correo @uniminuto.edu.co)</label>
-                    <input type="text" id="new-username" placeholder="andres.ramirez" class="w-full p-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-600">
+                    <label class="block text-xs font-bold text-slate-700">Horas de Estudio Semanales</label>
+                    <input type="number" id="new-study" placeholder="Ej. 10" class="w-full p-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-600">
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs font-bold text-slate-700">Inasistencias Exactas</label>
-                        <input type="number" id="new-absences" placeholder="3" class="w-full p-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-600">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700">Horas de Sueño / Noche</label>
-                        <input type="number" id="new-sleep" placeholder="6" class="w-full p-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-600">
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700">Promedio (1.0 - 5.0)</label>
+                        <label class="block text-xs font-bold text-slate-700">Calificaciones Previas (1-5)</label>
                         <input type="number" step="0.1" id="new-gpa" placeholder="3.8" class="w-full p-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-600">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-700">Asistencia %</label>
+                        <label class="block text-xs font-bold text-slate-700">Porcentaje de Asistencia %</label>
                         <input type="number" id="new-attendance" placeholder="85" class="w-full p-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-600">
                     </div>
                 </div>
 
-                <button type="button" onclick="handleAddStudent()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition-colors mt-2 cursor-pointer">
-                    Guardar Estudiante
+                <button type="button" onclick="handleAddStudent()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition-colors mt-2 cursor-pointer shadow-md shadow-blue-500/20">
+                    Guardar y Predecir
                 </button>
             </div>
         </div>
@@ -260,50 +292,60 @@
         let students = [
             {
                 id: 1,
-                name: "Sofía Martínez",
-                email: "sofia.martinez" + DOMAIN,
-                absences: 1,
-                sleep: 8,
-                gpa: "4.8 / 5.0",
-                attendance: "98%",
-                risk: "Bajo Riesgo (Alto Rendimiento)",
-                riskClass: "bg-emerald-50 text-emerald-700 border border-emerald-200",
-                diagnosis: "El modelo predictivo muestra un patrón sobresaliente. La estudiante mantiene un hábito de descanso óptimo (8 hrs) y un nivel de inasistencia mínimo.",
-                recommendations: [
-                    "Incentivar la participación en proyectos de tutoría entre pares.",
-                    "Mantener la higiene del sueño e integración en semilleros de investigación en IA."
+                name: "Pepito Perez",
+                email: "pepito.perez" + DOMAIN,
+                attendance: 92,
+                studyHours: 14,
+                gpa: "4.5 / 5.0",
+                prediction: "Bueno",
+                predictionClass: "bg-emerald-50 text-emerald-700 border border-emerald-200",
+                riskLevel: "Bajo",
+                factors: [
+                    "Excelente asistencia (92%)",
+                    "Horas de estudio semanales óptimas (14h)"
+                ],
+                plan: [
+                    "Mantener metodologías de estudio actuales",
+                    "Participación en semilleros de IA y datos"
                 ]
             },
             {
                 id: 2,
-                name: "Carlos Gómez",
-                email: "carlos.gomez" + DOMAIN,
-                absences: 6,
-                sleep: 5,
-                gpa: "3.2 / 5.0",
-                attendance: "75%",
-                risk: "Riesgo Moderado",
-                riskClass: "bg-amber-50 text-amber-700 border border-amber-200",
-                diagnosis: "Se identifican 6 inasistencias acumuladas y un promedio de sueño de 5 horas. Esta falta de descanso influye directamente en su rendimiento vespertino.",
-                recommendations: [
-                    "Reorganizar hábitos de descanso nocturno para alcanzar al menos 7 horas.",
-                    "Establecer un plan de nivelación para cubrir las 6 inasistencias registradas."
+                name: "Vicente Fernandez",
+                email: "vicente.fernandez" + DOMAIN,
+                attendance: 64,
+                studyHours: 5,
+                gpa: "2.8 / 5.0",
+                prediction: "En Riesgo",
+                predictionClass: "bg-rose-50 text-rose-700 border border-rose-200",
+                riskLevel: "Alto",
+                factors: [
+                    "Baja Asistencia (64%)",
+                    "Pocas horas de estudio (5h semanales)"
+                ],
+                plan: [
+                    "Aumentar horas de estudio (Meta sugerida: 13h semanales)",
+                    "Mejorar Asistencia (Meta sugerida: superar 85%)",
+                    "Asignar tutoría de refuerzo y seguimiento quincenal"
                 ]
             },
             {
                 id: 3,
-                name: "Valentina Ríos",
-                email: "valentina.rios" + DOMAIN,
-                absences: 12,
-                sleep: 4,
-                gpa: "2.1 / 5.0",
-                attendance: "60%",
-                risk: "Alto Riesgo Académico",
-                riskClass: "bg-rose-50 text-rose-700 border border-rose-200",
-                diagnosis: "Alerta crítica de IA: 12 inasistencias acumuladas y déficit severo de sueño (4 hrs/noche). Alto riesgo de deserción o reprobación.",
-                recommendations: [
-                    "Remisión prioritaria al área de Bienestar Universitario y tutoría docente.",
-                    "Firma de compromiso académico para recuperación de fallas y regularización de sueño."
+                name: "Nanpa Basico",
+                email: "nanpa.basico" + DOMAIN,
+                attendance: 88,
+                studyHours: 10,
+                gpa: "3.9 / 5.0",
+                prediction: "Medio",
+                predictionClass: "bg-amber-50 text-amber-700 border border-amber-200",
+                riskLevel: "Moderado",
+                factors: [
+                    "Asistencia aceptable (88%)",
+                    "Horas de estudio en promedio estándar"
+                ],
+                plan: [
+                    "Incrementar ligeramente el tiempo de repaso autónomo",
+                    "Revisión de entregas prácticas con tutor asignado"
                 ]
             }
         ];
@@ -331,65 +373,71 @@
             document.getElementById('login-error').classList.add('hidden');
         }
 
-        // MOSTRAR Y FILTRAR ESTUDIANTES
-        function renderStudentList(filterText = "") {
-            const container = document.getElementById('student-list');
+        // RENDERIZAR TABLA DE ESTUDIANTES
+        function renderStudentTable(filterText = "") {
+            const tbody = document.getElementById('student-table-body');
             const filtered = students.filter(s => s.name.toLowerCase().includes(filterText.toLowerCase()));
 
+            document.getElementById('stat-total').textContent = students.length;
+            document.getElementById('stat-low').textContent = students.filter(s => s.riskLevel === 'Bajo' || s.riskLevel === 'Moderado').length;
+            document.getElementById('stat-high').textContent = students.filter(s => s.riskLevel === 'Alto').length;
+
             if (filtered.length === 0) {
-                container.innerHTML = `<div class="text-xs text-slate-400 p-4 text-center">No se encontraron estudiantes.</div>`;
+                tbody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-xs text-slate-400">No se encontraron estudiantes.</td></tr>`;
                 return;
             }
 
-            container.innerHTML = filtered.map(s => `
-                <div onclick="selectStudent(${s.id})" class="p-3.5 rounded-xl border border-slate-200 hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition-all duration-200 flex items-center justify-between group">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-9 h-9 rounded-full bg-slate-100 text-slate-700 font-bold flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors text-sm">
-                            ${s.name.charAt(0)}
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-900 text-sm">${s.name}</h4>
-                            <p class="text-xs text-slate-400">${s.email}</p>
-                        </div>
-                    </div>
-                    <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 group-hover:text-blue-600"></i>
-                </div>
+            tbody.innerHTML = filtered.map(s => `
+                <tr class="hover:bg-blue-50/50 transition-colors cursor-pointer" onclick="selectStudent(${s.id})">
+                    <td class="py-3.5 px-3 font-semibold text-slate-900">${s.name}</td>
+                    <td class="py-3.5 px-3 text-slate-600">${s.attendance}%</td>
+                    <td class="py-3.5 px-3">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-bold ${s.predictionClass}">${s.prediction}</span>
+                    </td>
+                    <td class="py-3.5 px-3 text-right">
+                        <button class="text-xs font-bold text-blue-600 hover:text-blue-800">Ver →</button>
+                    </td>
+                </tr>
             `).join('');
             lucide.createIcons();
         }
 
         function filterStudents() {
             const query = document.getElementById('search-input').value;
-            renderStudentList(query);
+            renderStudentTable(query);
         }
 
-        // SELECCIONAR ESTUDIANTE
+        // SELECCIONAR ESTUDIANTE Y MOSTRAR DETALLE
         function selectStudent(id) {
             selectedStudent = students.find(s => s.id === id);
             if (!selectedStudent) return;
 
-            document.getElementById('student-name').textContent = selectedStudent.name;
-            document.getElementById('student-email').textContent = `Correo: ${selectedStudent.email}`;
+            document.getElementById('result-name').textContent = selectedStudent.name;
+            document.getElementById('result-email').textContent = `Correo institucional: ${selectedStudent.email}`;
             
-            const badge = document.getElementById('risk-badge');
-            badge.className = `px-4 py-2 rounded-xl text-sm font-bold text-center ${selectedStudent.riskClass}`;
-            badge.textContent = selectedStudent.risk;
+            const badge = document.getElementById('result-badge');
+            badge.className = `px-4 py-2 rounded-xl text-sm font-bold text-center ${selectedStudent.predictionClass}`;
+            badge.textContent = `Nivel de Riesgo: ${selectedStudent.riskLevel} (${selectedStudent.prediction})`;
 
-            document.getElementById('metric-absences').textContent = `${selectedStudent.absences} fallas`;
-            document.getElementById('metric-sleep').textContent = `${selectedStudent.sleep} hrs`;
+            document.getElementById('metric-absences').textContent = `${100 - selectedStudent.attendance}% ausente`;
+            document.getElementById('metric-study').textContent = `${selectedStudent.studyHours} hrs/sem`;
             document.getElementById('metric-gpa').textContent = selectedStudent.gpa;
-            document.getElementById('metric-attendance').textContent = selectedStudent.attendance;
+            document.getElementById('metric-attendance').textContent = `${selectedStudent.attendance}%`;
 
-            document.getElementById('ai-diagnosis').textContent = selectedStudent.diagnosis;
+            // Factores
+            const factorsList = document.getElementById('risk-factors');
+            factorsList.innerHTML = selectedStudent.factors.map(f => `<li class="font-medium text-slate-700">${f}</li>`).join('');
 
-            const recContainer = document.getElementById('ai-recommendations');
-            recContainer.innerHTML = selectedStudent.recommendations.map(r => `
+            // Plan de Mejora
+            const planContainer = document.getElementById('improvement-plan');
+            planContainer.innerHTML = selectedStudent.plan.map(p => `
                 <div class="flex items-start space-x-2 text-sm text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100">
-                    <i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
-                    <span>${r}</span>
+                    <i data-lucide="check" class="w-4 h-4 text-blue-600 shrink-0 mt-0.5"></i>
+                    <span>${p}</span>
                 </div>
             `).join('');
 
+            // Habilitar botón de envío
             const btnSend = document.getElementById('btn-send');
             btnSend.disabled = false;
             btnSend.className = "w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3.5 px-6 rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 cursor-pointer shadow-md shadow-blue-500/20";
@@ -397,62 +445,68 @@
             lucide.createIcons();
         }
 
-        // MODAL AGREGAR ESTUDIANTE
+        // MODAL NUEVO REGISTRO
         function openModal() { document.getElementById('add-modal').classList.remove('hidden'); }
         function closeModal() { document.getElementById('add-modal').classList.add('hidden'); }
 
         function handleAddStudent() {
             const name = document.getElementById('new-name').value.trim();
-            const username = document.getElementById('new-username').value.trim();
-            const absences = parseInt(document.getElementById('new-absences').value);
-            const sleep = parseInt(document.getElementById('new-sleep').value);
+            const study = parseFloat(document.getElementById('new-study').value);
             const gpaVal = parseFloat(document.getElementById('new-gpa').value);
-            const attVal = parseInt(document.getElementById('new-attendance').value);
+            const attendance = parseInt(document.getElementById('new-attendance').value);
 
-            if (!name || !username || isNaN(absences) || isNaN(sleep) || isNaN(gpaVal) || isNaN(attVal)) {
-                alert("Por favor completa todos los campos correctamente.");
+            if (!name || isNaN(study) || isNaN(gpaVal) || isNaN(attendance)) {
+                alert("Por favor completa todos los campos del nuevo registro.");
                 return;
             }
 
-            let riskText = "Bajo Riesgo";
-            let riskStyle = "bg-emerald-50 text-emerald-700 border border-emerald-200";
+            let prediction = "Bueno";
+            let predClass = "bg-emerald-50 text-emerald-700 border border-emerald-200";
+            let risk = "Bajo";
+            let factors = [`Asistencia del ${attendance}%`, `${study} horas de estudio semanales`];
+            let plan = ["Continuar con el buen ritmo académico", "Asesoría opcional con tutor"];
 
-            if (absences > 8 || gpaVal < 3.0) {
-                riskText = "Alto Riesgo Académico";
-                riskStyle = "bg-rose-50 text-rose-700 border border-rose-200";
-            } else if (absences > 4 || gpaVal < 3.8) {
-                riskText = "Riesgo Moderado";
-                riskStyle = "bg-amber-50 text-amber-700 border border-amber-200";
+            if (attendance < 75 || gpaVal < 3.0 || study < 7) {
+                prediction = "En Riesgo";
+                predClass = "bg-rose-50 text-rose-700 border border-rose-200";
+                risk = "Alto";
+                factors = [`Baja Asistencia (${attendance}%)`, `Pocas horas de estudio (${study}h)`];
+                plan = [
+                    `Aumentar horas de estudio (Meta sugerida: ${study + 5}h semanales)`,
+                    "Mejorar Asistencia (Meta sugerida: superar 85%)",
+                    "Asignar tutoría de refuerzo y seguimiento quincenal"
+                ];
+            } else if (attendance < 85 || gpaVal < 3.8) {
+                prediction = "Medio";
+                predClass = "bg-amber-50 text-amber-700 border border-amber-200";
+                risk = "Moderado";
+                factors = [`Asistencia moderada (${attendance}%)`, `Promedio estándar (${gpaVal})`];
+                plan = ["Reforzar conceptos clave", "Monitoreo quincenal del docente"];
             }
 
-            const cleanUser = username.replace('@uniminuto.edu.co', '').trim();
+            const cleanEmail = name.toLowerCase().replace(/\s+/g, '.') + DOMAIN;
             const newStudent = {
                 id: Date.now(),
                 name: name,
-                email: cleanUser + DOMAIN,
-                absences: absences,
-                sleep: sleep,
+                email: cleanEmail,
+                attendance: attendance,
+                studyHours: study,
                 gpa: `${gpaVal.toFixed(1)} / 5.0`,
-                attendance: `${attVal}%`,
-                risk: riskText,
-                riskClass: riskStyle,
-                diagnosis: `Perfil registrado manualmente. Registra ${absences} inasistencias y ${sleep} horas de descanso promedio por noche.`,
-                recommendations: [
-                    "Seguimiento periódico a la asistencia del estudiante.",
-                    "Monitoreo del desempeño en las próximas evaluaciones."
-                ]
+                prediction: prediction,
+                predictionClass: predClass,
+                riskLevel: risk,
+                factors: factors,
+                plan: plan
             };
 
             students.push(newStudent);
-            renderStudentList();
+            renderStudentTable();
             selectStudent(newStudent.id);
             closeModal();
 
-            // Limpiar inputs del modal
+            // Limpiar formulario
             document.getElementById('new-name').value = '';
-            document.getElementById('new-username').value = '';
-            document.getElementById('new-absences').value = '';
-            document.getElementById('new-sleep').value = '';
+            document.getElementById('new-study').value = '';
             document.getElementById('new-gpa').value = '';
             document.getElementById('new-attendance').value = '';
         }
@@ -463,7 +517,7 @@
 
             const toast = document.getElementById('toast');
             const toastMsg = document.getElementById('toast-msg');
-            toastMsg.textContent = `Reporte enviado a ${selectedStudent.email} con copia al tutor asignado.`;
+            toastMsg.textContent = `Reporte enviado al correo ${selectedStudent.email} con copia al tutor.`;
 
             toast.classList.remove('translate-y-32', 'opacity-0');
             setTimeout(() => {
@@ -471,8 +525,8 @@
             }, 4000);
         }
 
-        // INICIALIZACIÓN
-        renderStudentList();
+        // INICIALIZAR
+        renderStudentTable();
         lucide.createIcons();
     </script>
 </body>
